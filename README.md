@@ -130,22 +130,21 @@ interface IModel {
 - order: IServerOrder - текущий заказ клиента (объект, реализующий интерфейс IServerOrder);
 
 Класс предоставляет набор методов для работы с данными:
-
-    - getItem(id:string): IProduct | null - возвращает товар по его id;
-    - getOrder(): IOrder - возвращает заказ;
-    - getOrderItems(): IProduct[] - собирает и возвращает все товары из заказа по их id из списка доступных товаров;
-    - findPricelessItem(): boolean - ищет товар без цены (где price === null) в списке товаров текущего заказа;
-    - setPayment(value: string): void - устанавливает способ оплаты заказа, используя метод setPayment объекта order;
-    - setAddress(value: string): void - устанавливает адрес доставки для текущего заказа, используя метод setAddress объекта order;
-    - setEmail(email: string): void - устанавливает email клиента для текущего заказа, используя метод setEmail объекта order;
-    - setPhone(phone: string): void - устанавливает номер телефона клиента для текущего заказа, используя метод setPhone объекта order;
-    - validateAddress(): string | null - проверяет, указан ли адрес доставки для текущего заказа: возвращает текст ошибки, если поле не заполнено;
-    - validateContacts(): string | null - проверяет, указаны ли все контактные данные (email и телефон) для текущего заказа; при отсутствии какого-то из данных возвращает сообщение об ошибке, иначе — null;
-    - deletePricelessFromOrder(): void - удаляет товар без цены из текущего заказа;
-    - countTotal(): number - вычисляет и возвращает общую стоимость заказа, суммируя цены всех товаров в заказе;
-    - saveTotal(): void - сохраняет итоговую сумму заказа в объекте order, используя метод setTotal;
-    - clearOrderContacts(): void -  очищает контактные данные (address, mail, phone) в заказе, вызывая метод clearContacts объекта order;
-    - а также сеттер items(data: IProduct[]) устанавливает значение для поля _items.
+- getItem(id:string): IProduct | null - возвращает товар по его id;
+- getOrder(): IOrder - возвращает заказ;
+- getOrderItems(): IProduct[] - собирает и возвращает все товары из заказа по их id из списка доступных товаров;
+- findPricelessItem(): boolean - ищет товар без цены (где price === null) в списке товаров текущего заказа;
+- setPayment(value: string): void - устанавливает способ оплаты заказа, используя метод setPayment объекта order;
+- setAddress(value: string): void - устанавливает адрес доставки для текущего заказа, используя метод setAddress объекта order;
+- setEmail(email: string): void - устанавливает email клиента для текущего заказа, используя метод setEmail объекта order;
+- setPhone(phone: string): void - устанавливает номер телефона клиента для текущего заказа, используя метод setPhone объекта order;
+- validateAddress(): string | null - проверяет, указан ли адрес доставки для текущего заказа: возвращает текст ошибки, если поле не заполнено;
+- validateContacts(): string | null - проверяет, указаны ли все контактные данные (email и телефон) для текущего заказа; при отсутствии какого-то из данных возвращает сообщение об ошибке, иначе — null;
+- deletePricelessFromOrder(): void - удаляет товар без цены из текущего заказа;
+- countTotal(): number - вычисляет и возвращает общую стоимость заказа, суммируя цены всех товаров в заказе;
+- saveTotal(): void - сохраняет итоговую сумму заказа в объекте order, используя метод setTotal;
+- clearOrderContacts(): void -  очищает контактные данные (address, mail, phone) в заказе, вызывая метод clearContacts объекта order;
+- а также сеттер items(data: IProduct[]) устанавливает значение для поля _items.
 
 
 #### Класс IServerOrder
@@ -160,19 +159,18 @@ interface IModel {
 - items: string[] | null - массив id товаров, добавленных в заказ;
 
 Класс предоставляет следующий набор методов:
-    
-    - addItem(id: string): void - добавляет товар в список товаров заказа, добавляя его идентификатор в массив items;
-    - getItem(id: string): string | null - ищет товар по его id в массиве items;
-    - deleteItem(id: string): void - удаляет товар из списка items по его id;
-    - setPayment(value: string): void - устанавливает способ оплаты заказа (принимает строку value, которая может быть либо "Онлайн", либо "При получении", и на основе этого присваивает значение полю payment);
-    - setAddress(value: string): void - устанавливает адрес доставки для заказа;
-    - setEmail(value: string): void - устанавливает email пользователя;
-    - setPhone(value: string): void - устанавливает номер телефона пользователя;
-    - getAddress(): string | null - возвращает адрес доставки;
-    - getEmail(): string | null - возвращает почту пользователя;
-    - getPhone(): string | null - возвращает телефон пользователя;
-    - clearContacts(): void - очищает контактные данные (address, email, phone);
-    - setTotal(total: number): void - станавливает общую сумму заказа в поле total;
+- addItem(id: string): void - добавляет товар в список товаров заказа, добавляя его идентификатор в массив items;
+- getItem(id: string): string | null - ищет товар по его id в массиве items;
+- deleteItem(id: string): void - удаляет товар из списка items по его id;
+- setPayment(value: string): void - устанавливает способ оплаты заказа (принимает строку value, которая может быть либо "Онлайн", либо "При получении", и на основе этого присваивает значение полю payment);
+- setAddress(value: string): void - устанавливает адрес доставки для заказа;
+- setEmail(value: string): void - устанавливает email пользователя;
+- setPhone(value: string): void - устанавливает номер телефона пользователя;
+- getAddress(): string | null - возвращает адрес доставки;
+- getEmail(): string | null - возвращает почту пользователя;
+- getPhone(): string | null - возвращает телефон пользователя;
+- clearContacts(): void - очищает контактные данные (address, email, phone);
+- setTotal(total: number): void - станавливает общую сумму заказа в поле total;
 
 
 ### Классы представления
@@ -192,10 +190,9 @@ interface IModel {
 Методы класса позволяют взаимодействовать с данными товара (устанавливать и получать категорию, название, изображение и цену), а также обрабатывать клик по карточке товара для отображения подробной информации через презентер.
 
 Методы:
-
-    - handleClick(presenter: IPresenter): void - обрабатывает клик по карточке товара;
-    - render(): HTMLElement - возвращает клонированный элемент карточки товара;
-    - а так-же сеттеры и геттеры для сохранения и получения данных из полей класса.
+- handleClick(presenter: IPresenter): void - обрабатывает клик по карточке товара;
+- render(): HTMLElement - возвращает клонированный элемент карточки товара;
+- а так-же сеттеры и геттеры для сохранения и получения данных из полей класса.
 
 
 #### Класс Popup
@@ -207,10 +204,9 @@ interface IModel {
 - _content: HTMLElement - хранит ссылку на элемент содержимого модального окна;
 
 Методы:
-
-    - open(): void - метод открывает модальное окно;
-    - close(): void - закрытие модального окна;
-    - closeByOverlayClick(evt: MouseEvent): void - закрытие модального окна по клику на оверлей.
+- open(): void - метод открывает модальное окно;
+- close(): void - закрытие модального окна;
+- closeByOverlayClick(evt: MouseEvent): void - закрытие модального окна по клику на оверлей.
 
 
 #### Класс Preview
@@ -229,13 +225,12 @@ interface IModel {
 - presenter: IPresenter;
 
 Методы:
-
-    - render(): HTMLElement -  возвращает клонированный элемент карточки товара;
-    - setData(item: IProduct): void - задает данные для элементов карточки товара;
-    - disableBasketbutton(): void - отключает кнопку добавления товара в корзину и изменяет текст на кнопке, показывая, что товар уже добавлен в корзину ("Товар в корзине");
-    - enableBasketButton(): void - восстанавливает активность кнопки добавления в корзину и изменяет текст кнопки обратно на "В корзину";
-    - handleBasketButtonClick(): void - метод обрабатывает клик по кнопке добавления товара в корзину. Он проверяет, находится ли товар уже в корзине, и в зависимости от этого либо добавляет товар в корзину, либо блокирует кнопку;
-    - setPresenter(presenter: IPresenter): void - метод устанавливает презентер;
+- render(): HTMLElement -  возвращает клонированный элемент карточки товара;
+- setData(item: IProduct): void - задает данные для элементов карточки товара;
+- disableBasketbutton(): void - отключает кнопку добавления товара в корзину и изменяет текст на кнопке, показывая, что товар уже добавлен в корзину ("Товар в корзине");
+- enableBasketButton(): void - восстанавливает активность кнопки добавления в корзину и изменяет текст кнопки обратно на "В корзину";
+- handleBasketButtonClick(): void - метод обрабатывает клик по кнопке добавления товара в корзину. Он проверяет, находится ли товар уже в корзине, и в зависимости от этого либо добавляет товар в корзину, либо блокирует кнопку;
+- setPresenter(presenter: IPresenter): void - метод устанавливает презентер;
 
 
 #### Класс Basket
@@ -251,15 +246,14 @@ interface IModel {
 - itemConstructor: IBasketItemConstructor - хранит конструктор для создания элементов корзины;
 
 Методы:
-
-    - setPresenter(presenter: IPresenter): void - метод устанавливает презентер для корзины;
-    - render(): HTMLElement - отвечает за отображение товаров в корзине и их общей стоимости;
-    - handleDeleteItem(id: string): void - удаляет товар из корзины по его id;
-    - setPrice(value: number): void - отвечает за отображение цены в корзине;
-    - disableBasketButton(): void - отключает кнопку оформления заказа (например, если корзина пуста или содержит только товары без цены);
-    - enableBasketButton(): void - включает кнопку оформления заказа, если корзина содержит товары, которые можно оплатить;
-    - setBasketButtonState(): void - метод проверяет состояние корзины и обновляет кнопку оформления заказа;
-    - clearBasket(): void - очищает корзину, удаляя все товары.
+- setPresenter(presenter: IPresenter): void - метод устанавливает презентер для корзины;
+- render(): HTMLElement - отвечает за отображение товаров в корзине и их общей стоимости;
+- handleDeleteItem(id: string): void - удаляет товар из корзины по его id;
+- setPrice(value: number): void - отвечает за отображение цены в корзине;
+- disableBasketButton(): void - отключает кнопку оформления заказа (например, если корзина пуста или содержит только товары без цены);
+- enableBasketButton(): void - включает кнопку оформления заказа, если корзина содержит товары, которые можно оплатить;
+- setBasketButtonState(): void - метод проверяет состояние корзины и обновляет кнопку оформления заказа;
+- clearBasket(): void - очищает корзину, удаляя все товары.
 
 
 #### Класс BasketItem
@@ -275,9 +269,8 @@ interface IModel {
 - deleteIcon: HTMLElement - иконка удаления товара из корзины.
 
 Методы:
-
-    - render(): HTMLDivElement - возвращает элемент товара в корзине;
-    - setText(): void - устанавливает значения для индекса, названия и цены товара.
+- render(): HTMLDivElement - возвращает элемент товара в корзине;
+- setText(): void - устанавливает значения для индекса, названия и цены товара.
 
 
 
@@ -296,21 +289,20 @@ interface IModel {
 - presenter: IPresenter - презентер.
 
 Методы:
-
-    - setPresenter(presenter: IPresenter): void - передает презентер в форму;
-    - render(): HTMLElement - возвращает элемент формы;
-    - clearForm(): void - очищает форму, деактивирует кнопку отправки;
-    - handlePayment(evt: MouseEvent): void - обработчик клика по кнопкам для выбора способа оплаты;
-    - togglePaymentMethod(targetButton: HTMLButtonElement, - otherButton: HTMLButtonElement): void - переключает активное состояние между двумя кнопками;
-    - getPaymentMethod(): void - возвращает текущий выбранный метод оплаты, если он выбран;
-    - isInputFilled(): boolean - проверяет, заполнено ли поле ввода;
-    - savePaymentAndAdress(): void - cохраняет выбранный метод оплаты и введённый адрес с помощью презентера;
-    - isFormValid(): boolean - проверяет, валидна ли форма;
-    - handleInput(): void - обрабатывает ввод данных в форму: если форма валидна, убирает ошибки и активирует кнопку отправки, иначе отображает ошибку и деактивирует кнопку;
-    - showInputError(): void - устанавливает текст ошибки;
-    - hideInputError(): void - скрывает текст ошибки;
-    - setSubmitState(isValid: boolean): void - активирует или деактивирует кнопку отправки в зависимости от валидности формы;
-    - handleNextButton(event: MouseEvent): void - обрабатывает клик по кнопке "Далее": вызывает метод презентера для открытия формы с контактами.
+- setPresenter(presenter: IPresenter): void - передает презентер в форму;
+- render(): HTMLElement - возвращает элемент формы;
+- clearForm(): void - очищает форму, деактивирует кнопку отправки;
+- handlePayment(evt: MouseEvent): void - обработчик клика по кнопкам для выбора способа оплаты;
+- togglePaymentMethod(targetButton: HTMLButtonElement, - otherButton: HTMLButtonElement): void - переключает активное состояние между двумя кнопками;
+- getPaymentMethod(): void - возвращает текущий выбранный метод оплаты, если он выбран;
+- isInputFilled(): boolean - проверяет, заполнено ли поле ввода;
+- savePaymentAndAdress(): void - cохраняет выбранный метод оплаты и введённый адрес с помощью презентера;
+- isFormValid(): boolean - проверяет, валидна ли форма;
+- handleInput(): void - обрабатывает ввод данных в форму: если форма валидна, убирает ошибки и активирует кнопку отправки, иначе отображает ошибку и деактивирует кнопку;
+- showInputError(): void - устанавливает текст ошибки;
+- hideInputError(): void - скрывает текст ошибки;
+- setSubmitState(isValid: boolean): void - активирует или деактивирует кнопку отправки в зависимости от валидности формы;
+- handleNextButton(event: MouseEvent): void - обрабатывает клик по кнопке "Далее": вызывает метод презентера для открытия формы с контактами.
 
 
 #### Класс ContacsForm
@@ -326,18 +318,17 @@ interface IModel {
 - presenter: IPresenter - презентер.
 
 Методы:
-
-    - setPresenter(presenter: IPresenter): void - передает презентер в форму для управления логикой формы;
-    - render(): HTMLElement - возвращает элемент формы;
-    - clearForm(): void - очищает форму, деактивирует кнопку отправки;
-    - isInputFilled(input: HTMLInputElement): boolean - проверяет, заполнено ли поле ввода;
-    - saveContacts(): void - cохраняет введённые контактные данные (email и телефон) с помощью презентера;
-    - isFormValid(): boolean - проверяет, валидна ли форма;
-    - handleInputs(): void - обрабатывает ввод данных в форму: если форма валидна, убирает ошибки и активирует кнопку отправки, иначе отображает ошибку и деактивирует кнопку;
-    - showInputError(): void - устанавливает текст ошибки;
-    - hideInputError(): void - скрывает текст ошибки;
-    - setSubmitState(isValid: boolean): void - активирует или деактивирует кнопку отправки в зависимости от валидности формы;
-    - handleSubmitButton(event: MouseEvent) - обрабатывает клик по кнопке отправки формы: вызывает метод презентера для отправки заказа.
+- setPresenter(presenter: IPresenter): void - передает презентер в форму для управления логикой формы;
+- render(): HTMLElement - возвращает элемент формы;
+- clearForm(): void - очищает форму, деактивирует кнопку отправки;
+- isInputFilled(input: HTMLInputElement): boolean - проверяет, заполнено ли поле ввода;
+- saveContacts(): void - cохраняет введённые контактные данные (email и телефон) с помощью презентера;
+- isFormValid(): boolean - проверяет, валидна ли форма;
+- handleInputs(): void - обрабатывает ввод данных в форму: если форма валидна, убирает ошибки и активирует кнопку отправки, иначе отображает ошибку и деактивирует кнопку;
+- showInputError(): void - устанавливает текст ошибки;
+- hideInputError(): void - скрывает текст ошибки;
+- setSubmitState(isValid: boolean): void - активирует или деактивирует кнопку отправки в зависимости от валидности формы;
+- handleSubmitButton(event: MouseEvent) - обрабатывает клик по кнопке отправки формы: вызывает метод презентера для отправки заказа.
 
 
 #### Класс SuccessForm
@@ -351,11 +342,10 @@ interface IModel {
 - presenter: IPresenter - презентер.
 
 Методы:
-
-    - setPresenter(presenter: IPresenter): void - передает презентер в класс для управления логикой уведомления;
-    - render(): HTMLDivElement - возвращает элемент уведомления;
-    - setTotal(total: number): void - устанавливает текст уведомления с суммой заказа;
-    - handleClick(): void - обрабатывает клик по кнопке "За новыми покупками!": вызывает метод презентера для перехода к каталогу с товарами.
+- setPresenter(presenter: IPresenter): void - передает презентер в класс для управления логикой уведомления;
+- render(): HTMLDivElement - возвращает элемент уведомления;
+- setTotal(total: number): void - устанавливает текст уведомления с суммой заказа;
+- handleClick(): void - обрабатывает клик по кнопке "За новыми покупками!": вызывает метод презентера для перехода к каталогу с товарами.
 
 #### Класс Page
 отвечает за представление страницы, которая включает отображение товаров (в контейнере) и счетчик товаров в корзине. В конструктор класса передается элемент, который представляет контейнер страницы, на которой будет отображаться контент.
@@ -368,11 +358,10 @@ interface IModel {
 - presenter: IPresenter - хранит ссылку на объект презентера;
 
 Методы:
-
-    - сеттер goodsContainer устанавливвает переданный массив в поле _goodsContainer;
-    - сеттер counter обновляет текстовое содержание элемента, хранящегося в поле _counter;
-    - setPresenter(presenter: IPresenter): void - устанавливает презентер;
-    - handleClick(): void - обрабатывает клик на basketIcon.
+- сеттер goodsContainer устанавливвает переданный массив в поле _goodsContainer;
+- сеттер counter обновляет текстовое содержание элемента, хранящегося в поле _counter;
+- setPresenter(presenter: IPresenter): void - устанавливает презентер;
+- handleClick(): void - обрабатывает клик на basketIcon.
 
 ### Слой коммуникации
 
@@ -397,27 +386,26 @@ interface IModel {
 Поле класса cardTemplate хранит ссылку на элемент шаблона карточки товара.
 
 Методы:
-
-    - renderView(): void - запрашивает список товаров с сервера. После получения списка товаров он создает карточки товаров с использованием конструктора viewItemConstructor, которые затем добавляются в контейнер товаров на странице. Также обновляется счетчик заказов.
-    - getCardData(id: string): IProduct | null - возвращает данные товара по id (использует метод модели, чтобы получить товар по идентификатору);
-    - getItemFromOrder(id: string): string | null - возвращает товар из заказа по id (использует метод модели, чтобы получить товар из заказа);
-    - getOrderItemsData(): IProduct[] - возвращает все товары в заказе (использует метод модели, чтобы вернуть все товары из заказа);
-    - setPopupContent<T>(content: T): void - устанавливает содержимое попапа;
-    - setOrderButtonState(item: IProduct): void - включает или отключает кнопку "В корзину" в зависимости от того, есть ли уже этот товар в заказе;
-    - openPreview(item: IProduct): void - открывает попап с подробной информацией о товаре;
-    - openBasket(): void - открывает попап корзины;
-    - addItemToBasket(itemId: string): void - добавляет товар в корзину;
-    - deleteItemFromBasket(itemId: string): void - удаляет товар из корзины;
-    - openPaymentForm(): void - открывает попап формы оплаты;
-    - getAddressError(): string | null - возвращает результат валидации адреса;
-    - getContactError(): string | null - возвращает результат валидации контактных данных (почта, телефон);
-    - setPaymentMethod(value: string): void - устанавливает метод оплаты, передавая значение в модель;
-    - setAddressToForm(address: string): void- устанавливает адрес доставки, передавая значение в модель;
-    - openContactsForm(): void - открывает попап формы для ввода контактных данных;
-    - setEmail(email: string): void - устанавливает email, передавая значение в модель;
-    - setPhone(phone: string): void - устанавливает телефон, передавая значение в модель;
-    - openSuccessPopup(): void - открывает попап с информацией об успешном оформлении заказа;
-    - closeSuccessPopup(): void - закрывает попап успеха после успешной обработки заказа;
-    - hasOnlyPricelessItem(): boolean - возвращает true, если в заказе есть только один товар и этот товар не имеет цены;
-    - pay(): void - отправляет заказ на сервер, в случае успешного ответа сервера очищает корзину и формы и отображает попап успеха.
+- renderView(): void - запрашивает список товаров с сервера. После получения списка товаров он создает карточки товаров с использованием конструктора viewItemConstructor, которые затем добавляются в контейнер товаров на странице. Также обновляется счетчик заказов.
+- getCardData(id: string): IProduct | null - возвращает данные товара по id (использует метод модели, чтобы получить товар по идентификатору);
+- getItemFromOrder(id: string): string | null - возвращает товар из заказа по id (использует метод модели, чтобы получить товар из заказа);
+- getOrderItemsData(): IProduct[] - возвращает все товары в заказе (использует метод модели, чтобы вернуть все товары из заказа);
+- setPopupContent<T>(content: T): void - устанавливает содержимое попапа;
+- setOrderButtonState(item: IProduct): void - включает или отключает кнопку "В корзину" в зависимости от того, есть ли уже этот товар в заказе;
+- openPreview(item: IProduct): void - открывает попап с подробной информацией о товаре;
+- openBasket(): void - открывает попап корзины;
+- addItemToBasket(itemId: string): void - добавляет товар в корзину;
+- deleteItemFromBasket(itemId: string): void - удаляет товар из корзины;
+- openPaymentForm(): void - открывает попап формы оплаты;
+- getAddressError(): string | null - возвращает результат валидации адреса;
+- getContactError(): string | null - возвращает результат валидации контактных данных (почта, телефон);
+- setPaymentMethod(value: string): void - устанавливает метод оплаты, передавая значение в модель;
+- setAddressToForm(address: string): void- устанавливает адрес доставки, передавая значение в модель;
+- openContactsForm(): void - открывает попап формы для ввода контактных данных;
+- setEmail(email: string): void - устанавливает email, передавая значение в модель;
+- setPhone(phone: string): void - устанавливает телефон, передавая значение в модель;
+- openSuccessPopup(): void - открывает попап с информацией об успешном оформлении заказа;
+- closeSuccessPopup(): void - закрывает попап успеха после успешной обработки заказа;
+- hasOnlyPricelessItem(): boolean - возвращает true, если в заказе есть только один товар и этот товар не имеет цены;
+- pay(): void - отправляет заказ на сервер, в случае успешного ответа сервера очищает корзину и формы и отображает попап успеха.
 
