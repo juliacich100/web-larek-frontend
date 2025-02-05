@@ -1,32 +1,12 @@
-import { Popup } from "../components/Popup";
-import { IPage } from "../components/Page";
-import { IViewProductConstructor } from "../components/Card"
-import { IPaymentForm } from "../components/PaymentForm";
-import { IBasket } from "../components/Basket";
-import { IContactsForm } from "../components/ContactsForm";
-import { ISuccessForm } from "../components/SuccessForm";
+import { Popup } from "../components/view/Popup";
+import { IPage } from "../components/view/Page";
+import { ICardConstructor } from "../components/view/Card"
+import { IPaymentForm } from "../components/view/PaymentForm";
+import { IBasket } from "../components/view/Basket";
+import { IContactsForm } from "../components/view/ContactsForm";
+import { ISuccessForm } from "../components/view/SuccessForm";
 import { IServer } from "../components/ServerApi";
-import { IPreview } from "../components/Preview";
-
-export interface IModel {
-    _items: IProduct[];
-    order: IServerOrder;
-
-    getItem(id:string): IProduct | null;
-    getOrder(): IServerOrder;
-    getOrderItems(): IProduct[];
-    findPricelessItem(): boolean;
-    setPayment(value: string): void;
-    setAddress(value: string): void;
-    setEmail(email: string): void;
-    setPhone(phone: string): void;
-    validateAddress(): string | null;
-    validateContacts(): string | null;
-    deletePricelessFromOrder(): void;
-    countTotal(): number;
-    saveTotal(): void;
-    clearOrderContacts(): void;
-}
+import { IPreview } from "../components/view/Preview";
 
 export interface IProduct {
     id: string;
@@ -34,7 +14,7 @@ export interface IProduct {
     title: string;
     image: string;
     description: string;
-    price: number;
+    price: number | null;
 }
 
 export type TBasketItem = Pick<IProduct, 'id' | 'title' | 'price'> & {index: number;}
@@ -45,25 +25,36 @@ export interface IProductsServerList {
 }
 
 export interface IServerOrder {
-    payment: "card" | "cash";
+    payment: "online" | "offline";
     email: string;
     phone: string;
     address: string;
     total: number;
     items: string[] | null;
+}
 
+export interface IProductsModel {
+    items: IProduct[];
+    getProduct(id:string): IProduct | null;
+    findPricelessProduct(orderItems: string[]): string | null;
+    countTotal(orderItems: IProduct[]): number;
+}
+
+export interface IOrderModel {
+    order: IServerOrder;
     addItem(id: string): void;
     getItem(id: string): string | null;
     deleteItem(id: string): void;
+    getOrder(): IServerOrder;
+    getOrderItems(): string[];
     setTotal(total: number): void;
     setPayment(value: string): void;
     setAddress(value: string): void;
     setEmail(value: string): void;
     setPhone(value: string): void;
-    getAddress(): string | null;
-    getEmail(): string | null;
-    getPhone(): string | null;
-    clearContacts(): void;
+    validateAddress(): string | null;
+    validateContacts(): string | null;
+    clearOrderFields(): void;
 }
 
 export interface IOrderResult {
@@ -72,33 +63,27 @@ export interface IOrderResult {
 }
 
 export interface IPresenter {
-    renderView(): void;
-    getCardData(id: string): IProduct | null;
-    getItemFromOrder(id: string): string;
-    getOrderItemsData(): IProduct[];
+    renderProductsList(): void;
+    renderBasketItems(): void;
+    handleOrderButtonClick(id: string): void;
     openPreview(item: IProduct): void;
     openBasket(): void;
-    addItemToBasket(itemId: string): void;
-    deleteItemFromBasket(itemId: string): void;
-    hasOnlyPricelessItem(): boolean;
     openPaymentForm(): void;
     openContactsForm(): void;
+    openSuccessPopup(total: number): void;
     closeSuccessPopup(): void;
-    setPaymentMethod(value: string): void;
-    setAddressToForm(address: string): void;
     pay(): void;
-    setEmail(email: string): void;
-    setPhone(phone: string): void;
-    getAddressError(): string | null;
-    getContactError(): string;
+    handleContactsInputChange(email: string, phone: string): void;
+    handleAdressInputChange(payment: string, adress: string): void;
 }
 
 export type TPresenterParams = {
     server: IServer;
-    model: IModel,
+    itemModel: IProductsModel,
+    orderModel: IOrderModel,
     viewPageContainer: IPage,
-    viewItemConstructor: IViewProductConstructor,
-    preview: IPreview,
+    viewItemConstructor: ICardConstructor,
+    preview: IPreview<IProduct>,
     popup: Popup,
     basket: IBasket,
     paymentForm: IPaymentForm,

@@ -1,11 +1,13 @@
+import { ensureElement } from "../../utils/utils"
+
 export class Popup {
     container: HTMLElement
     closeButton: HTMLButtonElement;
     _content: HTMLElement;
 
     constructor(container: HTMLElement) {
-        this.closeButton = container.querySelector('.modal__close');
-        this._content = container.querySelector('.modal__content');
+        this.closeButton = ensureElement<HTMLButtonElement>('.modal__close', container);
+        this._content = ensureElement<HTMLElement>('.modal__content', container);
         this.container = container;
 
         this.closeButton.addEventListener('click', this.close.bind(this));
@@ -26,7 +28,7 @@ export class Popup {
 
     closeByOverlayClick(evt: MouseEvent): void {
         if (evt.currentTarget === evt.target) {
-            this.container.classList.remove('modal_active');
+            this.close();
         }
     }
 }
